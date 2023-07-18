@@ -1,33 +1,16 @@
-# Define the sizes for the animation
-sizes = list(range(50, 500, 50))
-
-# List to store each frame of the animation
-frames = []
-
-# Maximum size for the frames
-max_size = max(sizes)
-
-for size in sizes:
-    # Resize the image
-    img_resized = img.resize((size, size))
-
-    # Create a new image with white background
-    new_img = Image.new("RGB", (max_size, max_size), "white")
+<!DOCTYPE html>
+<html>
+<head>
+    <title>マンガのウェブサイト</title>
+</head>
+<body>
+    <h1>マンガのウェブサイトへようこそ！</h1>
+    <p>ここでは、お気に入りのマンガを表示します。</p>
     
-    # Paste the resized QR code at the center of the new image
-    upper_left_corner = (max_size - size) // 2
-    new_img.paste(img_resized, (upper_left_corner, upper_left_corner))
+    <!-- マンガの画像を表示します。 -->
+    <img src="path_to_your_manga_image.jpg" alt="マンガの画像" />
 
-    # Convert the PIL Image to a numpy array (required by imageio)
-    frame = np.array(new_img)
-    
-    # Add the frame to the list of frames
-    frames.append(frame)
-
-# Define the path for the gif
-gif_path = "/mnt/data/qr_code_animation.gif"
-
-# Create the gif
-imageio.mimwrite(gif_path, frames, 'GIF', duration=0.2)
-
-gif_path
+    <!-- もし複数のマンガ画像を表示したい場合、imgタグを追加します。 -->
+    <!-- <img src="path_to_your_second_manga_image.jpg" alt="2つ目のマンガの画像" /> -->
+</body>
+</html>
