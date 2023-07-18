@@ -1,0 +1,33 @@
+# Define the sizes for the animation
+sizes = list(range(50, 500, 50))
+
+# List to store each frame of the animation
+frames = []
+
+# Maximum size for the frames
+max_size = max(sizes)
+
+for size in sizes:
+    # Resize the image
+    img_resized = img.resize((size, size))
+
+    # Create a new image with white background
+    new_img = Image.new("RGB", (max_size, max_size), "white")
+    
+    # Paste the resized QR code at the center of the new image
+    upper_left_corner = (max_size - size) // 2
+    new_img.paste(img_resized, (upper_left_corner, upper_left_corner))
+
+    # Convert the PIL Image to a numpy array (required by imageio)
+    frame = np.array(new_img)
+    
+    # Add the frame to the list of frames
+    frames.append(frame)
+
+# Define the path for the gif
+gif_path = "/mnt/data/qr_code_animation.gif"
+
+# Create the gif
+imageio.mimwrite(gif_path, frames, 'GIF', duration=0.2)
+
+gif_path
